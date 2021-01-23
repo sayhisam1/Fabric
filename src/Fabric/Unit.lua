@@ -141,6 +141,34 @@ function Unit:get(key)
 	end
 end
 
+function Unit:see(key)
+	local object = self.data
+
+	if object == nil then
+		return
+	end
+
+	if key == nil then
+		return object
+	end
+
+	if type(key) == "table" then
+		for _, field in ipairs(key) do
+			object = object[field]
+
+			if object == nil then
+				return
+			end
+		end
+
+		return object
+	elseif type(object) == "table" then
+		return object[key]
+	else
+		error("Can't call Unit:get() with a parameter when unit data isn't a table")
+	end
+end
+
 function Unit:getUnit(unitResolvable)
 	self:assertNotDestroyed()
 	return self.fabric._collection:getUnitByRef(unitResolvable, self)
