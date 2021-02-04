@@ -142,4 +142,15 @@ function UnitCollection:removeAllUnitsWithRef(ref)
 	end
 end
 
+function UnitCollection:getAllUnitsWithRef(ref)
+	if not self._refUnits[ref] then
+		return {}
+	end
+	local unitNames = table.create(#self._refUnits[ref])
+	for _staticUnit, unit in pairs(self._refUnits[ref]) do
+		table.insert(unitNames, unit.name)
+	end
+	return unitNames
+end
+
 return UnitCollection

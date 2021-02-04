@@ -154,6 +154,16 @@ function Fabric:removeAllUnitsWithRef(ref)
 end
 
 --[=[
+	Returns a list of all units attached to the ref
+
+	@param ref Ref -- The ref to get all attached units from
+	@return nil
+]=]
+function Fabric:getAllUnitsWithRef(ref)
+	return self._collection:getAllUnitsWithRef(ref)
+end
+
+--[=[
 	Fires a fabric event.
 
 	@param eventName string -- The event name to fire
